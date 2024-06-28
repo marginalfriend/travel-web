@@ -19,7 +19,7 @@ return new class extends Migration
 						$table->integer('child_visitor');
 						$table->date('visit_date');
 						$table->boolean('is_paid');
-            $table->timestamps('created_at');
+            $table->timestamps();
         });
     }
 
