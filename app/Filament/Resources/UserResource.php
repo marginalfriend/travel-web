@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\DestinationResource\Pages;
-use App\Filament\Resources\DestinationResource\RelationManagers;
-use App\Models\Destination;
+use App\Filament\Resources\UserResource\Pages;
+use App\Filament\Resources\UserResource\RelationManagers;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class DestinationResource extends Resource
+class UserResource extends Resource
 {
-    protected static ?string $model = Destination::class;
+    protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -23,24 +23,21 @@ class DestinationResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('category_id')
-                    ->relationship('category', 'name')
-                    ->required(),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('adult_price')
+                Forms\Components\TextInput::make('email')
+                    ->email()
                     ->required()
+                    ->maxLength(255),
+                Forms\Components\DateTimePicker::make('email_verified_at'),
+                Forms\Components\TextInput::make('password')
+                    ->password()
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('phone_number')
+                    ->tel()
                     ->numeric(),
-                Forms\Components\TextInput::make('child_price')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\FileUpload::make('image')
-                    ->image(),
-                Forms\Components\Textarea::make('description')
-                    ->required()
-                    ->maxLength(65535)
-                    ->columnSpanFull(),
             ]);
     }
 
@@ -48,18 +45,16 @@ class DestinationResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('category.name')
-                    ->numeric()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('adult_price')
+                Tables\Columns\TextColumn::make('email')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('email_verified_at')
+                    ->dateTime()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('phone_number')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('child_price')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -92,9 +87,9 @@ class DestinationResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListDestinations::route('/'),
-            'create' => Pages\CreateDestination::route('/create'),
-            'edit' => Pages\EditDestination::route('/{record}/edit'),
+            'index' => Pages\ListUsers::route('/'),
+            'create' => Pages\CreateUser::route('/create'),
+            'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
 }
