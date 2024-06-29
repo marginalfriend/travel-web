@@ -11,6 +11,15 @@ class Destination extends Model
 {
     use HasFactory;
 
+		protected $fillable = [
+			'name',
+			'category_id',
+			'description',
+			'adult_price',
+			'child_price',
+			'image',
+		];
+
 		public function category(): BelongsTo
 		{
 			return $this->belongsTo(Category::class);

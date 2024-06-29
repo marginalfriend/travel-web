@@ -25,7 +25,11 @@ class DestinationResource extends Resource
             ->schema([
 							Forms\Components\TextInput::make('name')
 								->required()
-								->maxLength(64)
+								->maxLength(64),
+							Forms\Component\Select::make('category_id')
+								->label('Category')
+								->relationship('category', 'name')
+								->required(),
             ]);
     }
 
