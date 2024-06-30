@@ -1,4 +1,4 @@
-<header class="flex justify-between w-[100vw] align-middle text-gray-600 body-font fixed top-0 bg-white">
+<header class="flex justify-between w-[100vw] align-middle text-gray-600 body-font fixed top-0 bg-white z-100">
   <div class="container mx-auto flex flex-wrap p-3 px-5 flex-col md:flex-row items-center">
     <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
 			<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-white" viewBox="0 0 24 24">

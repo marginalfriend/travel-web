@@ -12,6 +12,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 
 class DestinationResource extends Resource
 {
@@ -35,8 +37,9 @@ class DestinationResource extends Resource
                 Forms\Components\TextInput::make('child_price')
                     ->required()
                     ->numeric(),
-                Forms\Components\FileUpload::make('image')
-                    ->image(),
+								SpatieMediaLibraryFileUpload::make('image')
+										->preserveFilenames()
+										->disk('public'),
                 Forms\Components\Textarea::make('description')
                     ->required()
                     ->maxLength(65535)
@@ -59,7 +62,7 @@ class DestinationResource extends Resource
                 Tables\Columns\TextColumn::make('child_price')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\ImageColumn::make('image'),
+								SpatieMediaLibraryImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
