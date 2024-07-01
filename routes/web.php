@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DestinationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +17,15 @@ use App\Http\Controllers\DestinationController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/destination', [DestinationController::class, 'index'])->name('destination.index');
 
-Route::get('/test-image/{id}', function ($id) {
-	$destination = \App\Models\Destination::findOrFail($id);
-	\Log::info('Test Image', [
-			'image_url' => $destination->getFirstMediaUrl('destinations'),
-			'all_media' => $destination->getMedia('destinations')->toArray()
-	]);
-	return $destination->getFirstMediaUrl('destinations');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+require __DIR__.'/auth.php';

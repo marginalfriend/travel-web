@@ -14,4 +14,8 @@ class DestinationController extends Controller
 			$destinations = Destination::all();
 			return view('destination.index', ['destinations' => $destinations]);
 		}
+
+		public function view(Destination $destination) {
+			return view('destination.view', ['destination' => $destination]);
+		}
 }
