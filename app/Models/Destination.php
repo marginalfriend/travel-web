@@ -11,7 +11,8 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Destination extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia;
+    use HasFactory; 
+		use InteractsWithMedia;
 
 		protected $fillable = [
 			'name',

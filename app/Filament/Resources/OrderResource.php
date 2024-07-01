@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\DestinationResource\Pages;
-use App\Filament\Resources\DestinationResource\RelationManagers;
-use App\Models\Destination;
+use App\Filament\Resources\OrderResource\Pages;
+use App\Filament\Resources\OrderResource\RelationManagers;
+use App\Models\Order;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,11 +12,10 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\Facades\Log;
 
-class DestinationResource extends Resource
+class OrderResource extends Resource
 {
-    protected static ?string $model = Destination::class;
+    protected static ?string $model = Order::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -24,50 +23,46 @@ class DestinationResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('category_id')
-                    ->relationship('category', 'name')
+                Forms\Components\Select::make('user_id')
+										->relationship('user', 'name')
+                    ->required(),	
+                Forms\Components\Select::make('destination_id')
+										->relationship('destination', 'name')
+										->required(),	
+                Forms\Components\TextInput::make('adult_visitor')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\TextInput::make('child_visitor')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\DatePicker::make('visit_date')
                     ->required(),
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('adult_price')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('child_price')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\FileUpload::make('image')
-                    ->image(),
-                Forms\Components\Textarea::make('description')
-                    ->required()
-                    ->maxLength(65535)
-                    ->columnSpanFull(),
+                Forms\Components\Toggle::make('is_paid')
+                    ->required(),
             ]);
     }
-
-		public function save(): void {
-			$data = $this->form->getComponent('image')->getState();
-	
-			dd($data);
-		}
-	
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('category.name')
+                Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('adult_price')
+                Tables\Columns\TextColumn::make('destination.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('child_price')
+                Tables\Columns\TextColumn::make('adult_visitor')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\TextColumn::make('child_visitor')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('visit_date')
+                    ->date()
+                    ->sortable(),
+                Tables\Columns\IconColumn::make('is_paid')
+                    ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -100,9 +95,9 @@ class DestinationResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListDestinations::route('/'),
-            'create' => Pages\CreateDestination::route('/create'),
-            'edit' => Pages\EditDestination::route('/{record}/edit'),
+            'index' => Pages\ListOrders::route('/'),
+            'create' => Pages\CreateOrder::route('/create'),
+            'edit' => Pages\EditOrder::route('/{record}/edit'),
         ];
     }
 }
