@@ -22,7 +22,7 @@
                     <button class="bg-sky-700 hover:bg-sky-500 text-white px-4 py-2 rounded-lg">Pesan Tiket<button />
                 </a>
             </div>
-            <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            <img src="https://wallpapersmug.com/download/2048x1152/829e7b/sea-coast-sunset.jpg"
                 width="1920" class="absolute h-full w-full -z-50 object-cover" />
             <div class="absolute top-0 w-full h-full bg-black/50 -z-20" />
         </div>

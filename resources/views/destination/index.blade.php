@@ -11,7 +11,9 @@
 	<link rel="preconnect" href="https://fonts.bunny.net">
 	<link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 </head>
-<body class="w-[100vw] min-h-[100vh]">
+<body class="w-[100vw] min-h-[100vh] flex flex-col justify-between align-middle pt-20">
+	@include('layouts.header')
+	<h1 class="text-center p-6 text-3xl font-semibold">Tempat Wisata</h1>
 	<div class="grid grid-cols-3 justify-center align-middle w-full h-full p-20 gap-10">
 		@foreach ($destinations as $destination)
 			<div class="">
@@ -24,5 +26,6 @@
 			</div>
 		@endforeach
 	</div>
+	@include('layouts.footer')
 </body>
 </html>
