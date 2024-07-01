@@ -12,6 +12,6 @@ class DestinationController extends Controller
     public function index(): View
 		{
 			$destinations = Destination::all();
-			return view('destination.index', ['destination' => $destinations]);
+			return view('destination.index', ['destinations' => $destinations]);
 		}
 }

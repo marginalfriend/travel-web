@@ -7,6 +7,8 @@ use App\Filament\Resources\DestinationResource\RelationManagers;
 use App\Models\Destination;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -36,20 +38,24 @@ class DestinationResource extends Resource
                 Forms\Components\TextInput::make('child_price')
                     ->required()
                     ->numeric(),
-                Forms\Components\FileUpload::make('image')
-                    ->image(),
+								Forms\Components\SpatieMediaLibraryFileUpload::make('image')
+										->image()
+										->disk('media')
+										->directory('destinations') // More specific directory
+										->visibility('public')
+										->maxSize(5120) // 5MB limit, adjust as needed
+										->collection('destinations')
+										->afterStateUpdated(function ($state) {
+											if ($state === null) {
+													Log::error('File upload failed in DestinationResource');
+											}
+										}), // Specify a collection name
                 Forms\Components\Textarea::make('description')
                     ->required()
                     ->maxLength(65535)
                     ->columnSpanFull(),
-            ]);
+						]);
     }
-
-		public function save(): void {
-			$data = $this->form->getComponent('image')->getState();
-	
-			dd($data);
-		}
 	
 
     public static function table(Table $table): Table
@@ -67,7 +73,7 @@ class DestinationResource extends Resource
                 Tables\Columns\TextColumn::make('child_price')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\ImageColumn::make('image'),
+								Tables\Columns\SpatieMediaLibraryImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

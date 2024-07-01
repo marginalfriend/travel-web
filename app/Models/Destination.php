@@ -20,8 +20,19 @@ class Destination extends Model implements HasMedia
 			'description',
 			'adult_price',
 			'child_price',
-			'image',
+			// 'image_path',
 		];
+
+		public function getImageUrlAttribute()
+		{
+				return $this->getFirstMediaUrl('destinations');
+		}
+
+		public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('destinations')
+            ->singleFile(); // if you only want one image per destination
+    }
 
 		public function category(): BelongsTo
 		{
@@ -32,4 +43,23 @@ class Destination extends Model implements HasMedia
 		{
 			return $this->hasMany(Order::class);
 		}
+		
+    protected static function booted()
+    {
+        static::created(function ($destination) {
+            \Log::info('Destination created', [
+                'id' => $destination->id,
+                'media' => $destination->getMedia('destinations')->count(),
+                'media_details' => $destination->getMedia('destinations')->toArray()
+            ]);
+        });
+
+        static::updated(function ($destination) {
+            \Log::info('Destination updated', [
+                'id' => $destination->id,
+                'media' => $destination->getMedia('destinations')->count(),
+                'media_details' => $destination->getMedia('destinations')->toArray()
+            ]);
+        });
+    }
 }

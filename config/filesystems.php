@@ -1,6 +1,7 @@
 <?php
 
 return [
+		'temporary_directory' => storage_path('app/public/media'),
 
     /*
     |--------------------------------------------------------------------------
@@ -13,7 +14,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DISK', 'local'),
+    'default' => env('FILESYSTEM_DISK', 'public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,6 +57,13 @@ return [
             'throw' => false,
         ],
 
+				'media' => [
+					'driver' => 'local',
+					'root'   => public_path('media'),
+					'url'    => env('APP_URL').'/media',
+					'visibility' => 'public',
+			],
+
     ],
 
     /*
@@ -70,7 +78,8 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+			public_path('storage') => storage_path('app/public'),
+			public_path('media') => storage_path('app/public/media'),
     ],
 
 ];

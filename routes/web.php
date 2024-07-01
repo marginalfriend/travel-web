@@ -18,3 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/destination', [DestinationController::class, 'index'])->name('destination.index');
+
+Route::get('/test-image/{id}', function ($id) {
+	$destination = \App\Models\Destination::findOrFail($id);
+	\Log::info('Test Image', [
+			'image_url' => $destination->getFirstMediaUrl('destinations'),
+			'all_media' => $destination->getMedia('destinations')->toArray()
+	]);
+	return $destination->getFirstMediaUrl('destinations');
+});
