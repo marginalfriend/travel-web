@@ -11,7 +11,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 </head>
 
-<body class="antialiased flex flex-col w-[100vw] min-h-[100vh]">
+<body class="antialiased flex flex-col w-[100vw] min-h-[100vh] overflow-x-hidden">
     @include('layouts.header')
     <main class="w-full h-full">
         <div class="flex flex-col justify-between align middle w-full h-[100vh] overflow-x-hidden">

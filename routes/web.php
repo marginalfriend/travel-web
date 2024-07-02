@@ -14,9 +14,9 @@ use App\Http\Controllers\DestinationController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () { return view('welcome'); });
 
 Route::get('/destination', [DestinationController::class, 'index'])->name('destination.index');
 Route::get('/destination/{destination}', [DestinationController::class, 'view'])->name('destination.view');
+
+Route::get('/contact', function () { return view('contact'); });
