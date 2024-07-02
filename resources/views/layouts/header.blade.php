@@ -10,8 +10,8 @@
             <span class="ml-1 text-xl">Tiketin</span>
         </a>
         <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-            <a class="mr-5 hover:text-gray-900 hover:cursor-pointer">Home</a>
-            <a class="mr-5 hover:text-gray-900 hover:cursor-pointer">Tempat Wisata</a>
+            <a href="/" class="mr-5 hover:text-gray-900 hover:cursor-pointer">Home</a>
+            <a href="/destination" class="mr-5 hover:text-gray-900 hover:cursor-pointer">Tempat Wisata</a>
         </nav>
         <button
             class="inline-flex items-center bg-sky-700 border-0 py-1 px-4 focus:outline-none hover:bg-sky-500 rounded text-white mt-4 md:mt-0">Contact
