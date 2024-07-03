@@ -14,6 +14,11 @@ class Order extends Model
 		protected $fillable = [
 			'child_visitor',
 			'adult_visitor',
+			'visit_date',
+		];
+
+		protected $attributes = [
+			'is_paid' => false,
 		];
 
 		public function user(): BelongsTo

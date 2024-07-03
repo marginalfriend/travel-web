@@ -15,6 +15,7 @@ class OrderController extends Controller
 				'adult_visitor'=>'numeric',
 				'destination_id' => 'required|exists:destinations,id',
 				'user_id' => 'required|exists:users,id',
+				'visit_date' => 'required'
 			]);
 
 			Order::create($validated);
