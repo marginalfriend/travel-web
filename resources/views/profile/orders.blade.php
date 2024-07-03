@@ -15,7 +15,7 @@
                         <th scope="col" class="p-4 border bg-gray-200">Total HTM</th>
                         <th scope="col" class="p-4 border bg-gray-200">Tanggal Kunjungan</th>
                         <th scope="col" class="p-4 border bg-gray-200">Pembayaran</th>
-                        <th scope="col" class="p-4 border bg-gray-200"></th>
+                        {{-- <th scope="col" class="p-4 border bg-gray-200"></th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -28,7 +28,7 @@
                             </td>
                             <td class="p-2 border text-center">{{ $order->visit_date }}</td>
                             <td class="p-2 border text-center">{{ $order->is_paid ? 'Paid' : 'Pending' }}</td>
-                            <td class="p-1 border text-center">
+                            {{-- <td class="p-1 border text-center">
                                 @if (!$order->is_paid)
                                     <form method="POST" action="{{ route('order.pay', ['order' => $order]) }}">
                                         @method('PUT')
@@ -38,7 +38,7 @@
                                             type="submit">Bayar</button>
                                     </form>
                                 @endif
-                            </td>
+                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>

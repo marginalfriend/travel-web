@@ -24,7 +24,7 @@
             <a href="/destination" class="mr-5 hover:text-gray-900 hover:cursor-pointer">Tempat Wisata</a>
             <a href="/contact" class="mr-5 hover:text-gray-900 hover:cursor-pointer">Contact</a>
             @if (auth()->check())
-                <a href="/orders" class="mr-5 hover:text-gray-900 hover:cursor-pointer">Invoi</a>
+                <a href="/orders" class="mr-5 hover:text-gray-900 hover:cursor-pointer">Invoice</a>
                 <a href="/profile" class="mr-5 hover:text-gray-900 hover:cursor-pointer">Profile</a>
             @endif
         </nav>
