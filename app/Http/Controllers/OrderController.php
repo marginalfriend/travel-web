@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -21,5 +22,14 @@ class OrderController extends Controller
 			Order::create($validated);
 
 			return redirect()->back()->with('success', 'Order created successfully!');
+		}
+
+		public function index()
+		{
+			$userId = Auth::id();
+
+			$orders = Order::where('user_id', $userId)->get();
+
+			return view('profile.orders', ['orders' => $orders]);
 		}
 }
