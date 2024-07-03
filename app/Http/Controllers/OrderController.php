@@ -21,7 +21,7 @@ class OrderController extends Controller
 
 			Order::create($validated);
 
-			return redirect()->back()->with('success', 'Order created successfully!');
+			return redirect()->back()->with('success', 'Berhasil memesan tiket!');
 		}
 
 		public function index()
@@ -31,5 +31,16 @@ class OrderController extends Controller
 			$orders = Order::where('user_id', $userId)->get();
 
 			return view('profile.orders', ['orders' => $orders]);
+		}
+
+		public function pay(Order $order, Request $request)
+		{
+			$paid = $request->validate([
+				'is_paid' => 	'required'
+			]);
+
+			$order->update($paid);
+
+			return redirect()->back()->with('success', 'Berhasil membayar tiket!');
 		}
 }

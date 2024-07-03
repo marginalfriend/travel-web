@@ -28,6 +28,7 @@ Route::get('/destination/{destination}', [DestinationController::class, 'view'])
 // Order
 Route::post('/destination/order', [OrderController::class, 'create'])->name('order.create');
 Route::get('/orders', [OrderController::class, 'index'])->middleware(['auth', 'verified'])->name('order.index');
+Route::put('/orders/{order}/pay', [OrderController::class, 'pay'])->middleware(['auth', 'verified'])->name('order.pay');
 
 // Auth
 Route::middleware('auth')->group(function () {

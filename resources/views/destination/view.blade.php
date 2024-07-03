@@ -21,9 +21,9 @@
         <div class="flex flex-col gap-6">
             <img alt="ecommerce" class="w-full lg:h-[70vh] h-64 object-cover object-center rounded"
                 src="{{ $destination->getImageUrlAttribute() }}">
-            <div class="w-full flex">
+            <div class="w-full flex flex-col gap-6">
                 @if (session()->has('success'))
-                    <div>
+                    <div class="w-full p-4 bg-lime-100 rounded">
                         {{ session('success') }}
                     </div>
                 @endif
