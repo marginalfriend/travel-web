@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,7 @@ Route::get('/destination', [DestinationController::class, 'index'])->name('desti
 Route::get('/destination/{destination}', [DestinationController::class, 'view'])->name('destination.view');
 
 // Order
-Route::post('/destination/{destination}/order', [OrderController::class, 'order'])->name('order.order');
+Route::post('/destination/order', [OrderController::class, 'create'])->name('order.create');
 
 // Etc
 Route::get('/contact', function () { return view('contact'); });

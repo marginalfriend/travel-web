@@ -20,6 +20,11 @@
             <div class="lg:w-4/5 mx-auto flex flex-wrap">
                 <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-[70vh] h-64 object-cover object-center rounded"
                     src="{{ $destination->getImageUrlAttribute() }}">
+                @if (session()->has('success'))
+                    <div>
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                     <h2 class="text-sm title-font text-gray-500 tracking-widest">{{ $destination->category->name }}
                     </h2>
@@ -33,21 +38,21 @@
                         </div>
 
                         @if (auth()->check())
-                            <form>
+                            <form action="{{ route('order.create') }}" method="POST">
                                 <div class="flex flex-col gap-4 w-full border p-6 rounded-lg">
                                     <h3 class="text-center text-xl font-bold">Pesan Langsung</h3>
                                     @csrf
                                     @method('POST')
                                     <div class="flex flex-col w-full">
                                         <label>Jumlah pengunjung anak - anak</label>
-                                        <input class="rounded-md" placeholder="0" type="number"
-                                            title="child visitor" />
+                                        <input name="child_visitor" class="rounded-md" placeholder="0" type="number" title="child visitor" />
                                     </div>
                                     <div class="flex flex-col w-full">
                                         <label>Jumlah pengunjung dewasa</label>
-                                        <input class="rounded-md" placeholder="0" type="number"
-                                            title="adult visitor" />
+                                        <input name="child_visitor" class="rounded-md" placeholder="0" type="number" title="adult visitor" />
                                     </div>
+                                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}" />
+                                    <input type="hidden" name="destination_id" value="{{ $destination->id }}" />
                                     <button type="submit"
                                         class="flex text-white bg-sky-500 border-0 h-min w-fit py-2 px-6 focus:outline-none hover:bg-sky-600 rounded">
                                         Pesan Tiket

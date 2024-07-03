@@ -11,6 +11,11 @@ class Order extends Model
 {
     use HasFactory;
 
+		protected $fillable = [
+			'child_visitor',
+			'adult_visitor',
+		];
+
 		public function user(): BelongsTo
 		{
 			return $this->belongsTo(User::class);
