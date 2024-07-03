@@ -22,7 +22,7 @@
 					<h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">{{ $destination -> category -> name }}</h3>
 					<h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{ $destination -> name }}</h2>
 					<a href="{{route('destination.view', ['destination' => $destination])}}">
-						<button class="inline-flex items-center bg-sky-700 border-0 py-1 px-4 focus:outline-none hover:bg-sky-500 rounded text-white mt-4 md:mt-0">LIhat
+						<button class="inline-flex items-center bg-sky-700 border-0 py-1 px-4 focus:outline-none hover:bg-sky-500 rounded text-white mt-4 md:mt-0">Lihat
 							<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
 								<path d="M5 12h14M12 5l7 7-7 7"></path>
 							</svg>

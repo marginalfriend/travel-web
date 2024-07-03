@@ -12,16 +12,21 @@
         <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
             <a href="/" class="mr-5 hover:text-gray-900 hover:cursor-pointer">Home</a>
             <a href="/destination" class="mr-5 hover:text-gray-900 hover:cursor-pointer">Tempat Wisata</a>
+            <a href="/contact" class="mr-5 hover:text-gray-900 hover:cursor-pointer">Contact</a>
+						@if (auth() -> check())
+            <a href="/profile" class="mr-5 hover:text-gray-900 hover:cursor-pointer">Profile</a>
+						@endif
         </nav>
-        <a href="/contact">
-            <button
-                class="inline-flex items-center bg-sky-700 border-0 py-1 px-4 focus:outline-none hover:bg-sky-500 rounded text-white mt-4 md:mt-0">Contact
-                Us
-                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-            </button>
-        </a>
+				@if (!auth() -> check())
+					<a href="/register">
+							<button
+									class="inline-flex items-center bg-sky-700 border-0 py-1 px-4 focus:outline-none hover:bg-sky-500 rounded text-white mt-4 md:mt-0">Register
+									<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+											stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+											<path d="M5 12h14M12 5l7 7-7 7"></path>
+									</svg>
+							</button>
+					</a>
+				@endif
     </div>
 </header>

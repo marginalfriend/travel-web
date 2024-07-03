@@ -11,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -20,6 +20,10 @@ class User extends Authenticatable
 			return $this->hasMany(Order::class);
 		}
 
+		public function canAccessPanel(Panel $panel): bool
+    {
+        return str_ends_with($this->email, '@tiketin.com') && $this->is_admin == 1;
+    }
 
     /**
      * The attributes that are mass assignable.

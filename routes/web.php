@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DestinationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Home
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Destinations
+Route::get('/destination', [DestinationController::class, 'index'])->name('destination.index');
+Route::get('/destination/{destination}', [DestinationController::class, 'view'])->name('destination.view');
+
+// Order
+Route::post('/destination/{destination}/order', [OrderController::class, 'order'])->name('order.order');
+
+// Etc
+Route::get('/contact', function () { return view('contact'); });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
