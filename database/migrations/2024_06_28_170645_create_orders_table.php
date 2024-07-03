@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
 						$table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
 						$table->foreignId('destination_id')->constrained('destinations')->cascadeOnDelete();
-						$table->integer('adult_visitor');
-						$table->integer('child_visitor');
+						$table->integer('adult_visitor')->default(0);
+						$table->integer('child_visitor')->default(0);
 						$table->date('visit_date');
-						$table->boolean('is_paid');
+						$table->boolean('is_paid')->default(false);
+						$table->boolean('is_confirmed')->default(false);
             $table->timestamps();
         });
     }
