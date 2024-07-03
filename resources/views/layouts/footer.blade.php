@@ -1,4 +1,4 @@
-<footer class="text-gray-600 body-font bottom-0 bg-white">
+<footer class="text-gray-600 body-font bottom-0 bg-gray-300">
   <div class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
     <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left md:mt-0 mt-10">
       <a class="flex title-font gap-2 font-medium items-center md:justify-start justify-center text-gray-900">
@@ -25,19 +25,19 @@ C318.858,289.466,324.212,407.178,495.426,413.249z" />
     </div>
     <div class="flex-grow flex flex-wrap md:pr-20 -mb-10 md:text-left text-center order-first">
       <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">Quick Links</h2>
+        <h2 class="text-gray-900 tracking-widest text-sm mb-3 font-bold">Quick Links</h2>
         <nav class="list-none mb-10">
           <li>
-            <a class="text-gray-600 hover:text-gray-800">About Us</a>
+            <a class="text-gray-600 hover:text-gray-800 font-bold">About Us</a>
           </li>
           <li>
-            <a class="text-gray-600 hover:text-gray-800">Contact Us</a>
+            <a class="text-gray-600 hover:text-gray-800 font-bold">Contact Us</a>
           </li>
           <li>
-            <a class="text-gray-600 hover:text-gray-800">Our Services</a>
+            <a class="text-gray-600 hover:text-gray-800 font-bold">Our Services</a>
           </li>
           <li>
-            <a class="text-gray-600 hover:text-gray-800">Support</a>
+            <a class="text-gray-600 hover:text-gray-800 font-bold">Support</a>
           </li>
         </nav>
       </div>
