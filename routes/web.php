@@ -19,7 +19,7 @@ use App\Http\Controllers\OrderController;
 // Home
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 // Destinations
 Route::get('/destination', [DestinationController::class, 'index'])->name('destination.index');
@@ -40,5 +40,5 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 // Etc
-Route::get('/contact', function () { return view('contact'); });
+Route::get('/contact', function () { return view('contact'); })->name('contact');
 
